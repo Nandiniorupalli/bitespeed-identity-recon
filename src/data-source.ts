@@ -1,13 +1,13 @@
-import { DataSource } from "typeorm";
-import { Contact } from "./entity/Contact";
-import path from "path";
+// data-source.ts
 
-const dbPath = path.join(__dirname, "../contacts.sqlite");
+import { DataSource } from "typeorm";
 
 export const AppDataSource = new DataSource({
-  type: "sqlite",
-  database: dbPath,
+  type: "better-sqlite3",
+  database: "database.sqlite",
   synchronize: true,
   logging: false,
-  entities: [Contact],
+  entities: ["dist/entity/*.js"],
+  migrations: [],
+  subscribers: [],
 });
